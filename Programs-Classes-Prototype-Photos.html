@@ -239,6 +239,32 @@
   .card.wide { grid-column: 1 / -1; }
   .card.wide .card-photo { height: 130px; }
 
+  .card-cta-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 18px;
+    min-height: 100px;
+  }
+  .card-cta-body h2 {
+    font-size: 21px;
+    color: var(--y-blue-dark);
+    margin: 0;
+  }
+  .btn-cta-card {
+    display: inline-block;
+    background: var(--y-blue-dark);
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 10px 26px;
+    border-radius: 22px;
+  }
+  .btn-cta-card:hover { background: var(--y-black); }
+
   /* CTA band */
   .cta-band {
     max-width: 1100px;
@@ -397,6 +423,7 @@
         <a class="link-card" href="https://www.sewickleyymca.org/aquatics/group-swim-lessons/">Group Swim Lessons</a>
         <a class="link-card" href="https://www.sewickleyymca.org/aquatics/adaptive-lessons/">Adaptive Swim Lessons</a>
         <a class="link-card" href="https://www.sewickleyymca.org/aquatics/private-lessons/">Private Swim Lessons</a>
+        <a class="link-card" href="https://www.sewickleyymca.org/aquatics/exercise/">Water Exercise</a>
         <a class="link-card" href="https://www.sewickleyymca.org/aquatics/pools/">Pool Reservations</a>
         <a class="link-card" href="https://www.sewickleyymca.org/aquatics/swim-teams/">Swim Teams</a>
         <a class="link-card" href="https://www.sewickleyymca.org/aquatics/certifications/">Lifeguard Certification</a>
@@ -458,7 +485,7 @@
     </div>
   </div>
 
-  <div class="card wide" id="community">
+  <div class="card" id="community">
     <div class="card-photo">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="8" cy="10" r="2"/><path d="M2 17l5-5 4 4 5-6 6 7"/></svg>
       <span>Photo placeholder</span>
@@ -483,6 +510,19 @@
         <a class="link-card" href="https://www.sewickleyymca.org/edu-leader">Youth and Teen Education and Leadership</a>
         <a class="link-card" href="https://www.sewickleyymca.org/qv-food/">Quaker Valley Food to Families</a>
         <a class="link-card" href="https://www.sewickleyymca.org/mini-pantries/">Free Mini Pantries</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-photo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="8" cy="10" r="2"/><path d="M2 17l5-5 4 4 5-6 6 7"/></svg>
+      <span>Photo placeholder</span>
+    </div>
+    <div class="card-body">
+      <div class="card-cta-body">
+        <h2>Join to Become a YMCA Member</h2>
+        <a href="/join/" class="btn-cta-card">Join Now</a>
       </div>
     </div>
   </div>
