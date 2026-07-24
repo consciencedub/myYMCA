@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIREFRAME — Program Category Cards</title>
+<style>
+  :root{
+    --gray-100:#f4f4f4;
+    --gray-200:#e2e2e2;
+    --gray-300:#c9c9c9;
+    --gray-400:#9c9c9c;
+    --gray-600:#666;
+    --gray-800:#2b2b2b;
+    --line:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'Courier New', monospace;
+    background:var(--gray-100);
+    color:var(--gray-800);
+    margin:0;
+    padding:32px 16px 80px;
+  }
+  .wf-tag{
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:.08em;
+    background:var(--gray-800);
+    color:#fff;
+    padding:3px 8px;
+    margin-bottom:16px;
+  }
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .hero{
+    border:2px dashed var(--line);
+    background:#fff;
+    padding:8px;
+    margin-bottom:24px;
+  }
+  .hero img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:20px;
+  }
+  @media(min-width:860px){
+    .grid{grid-template-columns:repeat(3, 1fr);}
+  }
+  .card{
+    border:2px dashed var(--line);
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+  }
+  .photo{
+    background:repeating-linear-gradient(
+      45deg,
+      var(--gray-200),
+      var(--gray-200) 8px,
+      var(--gray-300) 8px,
+      var(--gray-300) 16px
+    );
+    border-bottom:2px dashed var(--line);
+    height:110px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:10.5px;
+    letter-spacing:.06em;
+    color:var(--gray-600);
+    text-align:center;
+    padding:8px;
+  }
+  .card-body{
+    padding:14px 16px 16px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+  }
+  .card-num{
+    font-size:10px;
+    letter-spacing:.08em;
+    color:var(--gray-400);
+    margin-bottom:4px;
+  }
+  .card h2{
+    margin:0 0 8px;
+    font-size:15px;
+    letter-spacing:.01em;
+  }
+  .card p.blurb{
+    margin:0 0 12px;
+    font-size:12px;
+    line-height:1.5;
+    color:var(--gray-600);
+  }
+  .links{
+    margin-top:auto;
+    padding-top:10px;
+    border-top:1px dashed var(--gray-300);
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .link-pill{
+    font-size:10.5px;
+    border:1px solid var(--gray-400);
+    padding:3px 8px;
+    color:var(--gray-800);
+    white-space:nowrap;
+  }
+  .card-flag{
+    margin-top:10px;
+    font-size:10px;
+    color:var(--gray-600);
+    font-style:italic;
+    border-top:1px dashed var(--gray-300);
+    padding-top:8px;
+  }
+  footer.wf-footer{
+    max-width:1180px;
+    margin:24px auto 0;
+    border:2px dashed var(--line);
+    background:#fff;
+    padding:16px 24px;
+    font-size:11.5px;
+    color:var(--gray-600);
+    line-height:1.6;
+  }
+  footer.wf-footer strong{color:var(--gray-800);}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <span class="wf-tag">LOW-FIDELITY WIREFRAME — NOT FINAL VISUAL DESIGN</span>
+
+  <div class="hero">
+    <img src="hero-fall-program-guide.png" alt="Fall Program Guide '26 — Sewickley Valley YMCA">
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="photo">[ PHOTO PLACEHOLDER — swim lesson ]</div>
+      <div class="card-body">
+        <div class="card-num">CARD 01</div>
+        <h2>Swim Lessons</h2>
+        <p class="blurb">Confidence, safety, and lifelong skills for all ages, led by certified instructors.</p>
+        <div class="links">
+          <span class="link-pill">Parent &amp; Child (6–36 mos)</span>
+          <span class="link-pill">Preschool (3–5)</span>
+          <span class="link-pill">Youth (6–12)</span>
+          <span class="link-pill">Adaptive (6+)</span>
+          <span class="link-pill">Adult (13+)</span>
+          <span class="link-pill">Swim Teams</span>
+          <span class="link-pill">Family / Lap / Open Swim</span>
+          <span class="link-pill">Great Pumpkin Swim</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="photo">[ PHOTO PLACEHOLDER — youth sports ]</div>
+      <div class="card-body">
+        <div class="card-num">CARD 02</div>
+        <h2>Youth Sports</h2>
+        <p class="blurb">Supported by a partnership with the Valley Care Endowment and Heritage Valley Health System.</p>
+        <div class="links">
+          <span class="link-pill">Basketball</span>
+          <span class="link-pill">Flag Football</span>
+          <span class="link-pill">Gymnastics</span>
+          <span class="link-pill">Martial Arts</span>
+          <span class="link-pill">Run Club</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="photo">[ PHOTO PLACEHOLDER — youth &amp; teen ]</div>
+      <div class="card-body">
+        <div class="card-num">CARD 03</div>
+        <h2>Youth &amp; Teen</h2>
+        <p class="blurb">Supported by a partnership with the Valley Care Endowment and Heritage Valley Health System.</p>
+        <div class="links">
+          <span class="link-pill">Parents Night Out</span>
+          <span class="link-pill">Youth and Government</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="photo">[ PHOTO PLACEHOLDER — OASIS teen center ]</div>
+      <div class="card-body">
+        <div class="card-num">CARD 04</div>
+        <h2>OASIS Teen Center</h2>
+        <p class="blurb">Free after-school spot for students in grades 5–9 to relax, connect, and have fun. Open Mon–Thu, 3:00–6:00pm. No registration needed.</p>
+        <div class="links">
+          <span class="link-pill">OASIS Overview</span>
+          <span class="link-pill">Volleyball Club</span>
+          <span class="link-pill">Youth and Government</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="photo">[ PHOTO PLACEHOLDER — pre-school &amp; toddler ]</div>
+      <div class="card-body">
+        <div class="card-num">CARD 05</div>
+        <h2>Pre-School &amp; Toddler Recreation</h2>
+        <p class="blurb">Supported by a partnership with the Valley Care Endowment and Heritage Valley Health System.</p>
+        <div class="links">
+          <span class="link-pill">Structured Playdates</span>
+          <span class="link-pill">Preschool Gymnastics</span>
+          <span class="link-pill">Preschool Sports</span>
+          <span class="link-pill">Family Gym</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="photo">[ PHOTO PLACEHOLDER — wellness / fitness floor ]</div>
+      <div class="card-body">
+        <div class="card-num">CARD 06</div>
+        <h2>Wellness</h2>
+        <p class="blurb">Health, wellness, and belonging.</p>
+        <div class="links">
+          <span class="link-pill">Group Exercise</span>
+          <span class="link-pill">Group Water Aerobics</span>
+          <span class="link-pill">TRX</span>
+          <span class="link-pill">Wellness Center</span>
+          <span class="link-pill">Personal Training</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="photo">[ PHOTO PLACEHOLDER — group sports / pickleball ]</div>
+      <div class="card-body">
+        <div class="card-num">CARD 07</div>
+        <h2>Group Sports</h2>
+        <p class="blurb">From pickleball to paddleball, basketball to volleyball — find your team and get in the game.</p>
+        <div class="links">
+          <span class="link-pill">Volleyball</span>
+          <span class="link-pill">Platform Tennis</span>
+          <span class="link-pill">Basketball</span>
+          <span class="link-pill">Pickleball</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="photo">[ PHOTO PLACEHOLDER — healthy aging class ]</div>
+      <div class="card-body">
+        <div class="card-num">CARD 08</div>
+        <h2>Healthy Aging</h2>
+        <p class="blurb">Support healthy living through movement, wellness, and connection.</p>
+        <div class="links">
+          <span class="link-pill">Water Exercise</span>
+          <span class="link-pill">Chronic Disease Wellness</span>
+          <span class="link-pill">Healthy Aging Classes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="photo">[ PHOTO PLACEHOLDER — senior central ]</div>
+      <div class="card-body">
+        <div class="card-num">CARD 09</div>
+        <h2>Senior Central</h2>
+        <p class="blurb">Supported by a partnership with the Valley Care Endowment and Heritage Valley Health System.</p>
+        <div class="links">
+          <span class="link-pill">Faith in Action</span>
+          <span class="link-pill">Senior Central</span>
+          <span class="link-pill">Safe at Home</span>
+          <span class="link-pill">Senior Socials</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="photo">[ PHOTO PLACEHOLDER — fall recreation / mahjongg ]</div>
+      <div class="card-body">
+        <div class="card-num">CARD 10</div>
+        <h2>Fall Recreation</h2>
+        <p class="blurb">Learn something new, practice a favorite pastime, and connect with others in a welcoming YMCA setting.</p>
+        <div class="links">
+          <span class="link-pill">Mahjongg</span>
+          <span class="link-pill">Play Bridge</span>
+          <span class="link-pill">Senior Expo '26</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="wf-footer">
+    <strong>Wireframe notes —</strong> Grid shows 2 columns under ~860px and 3 columns above it; adjust breakpoints once real photography and copy are in. Each card mirrors the reference layout's photo + heading + blurb + link-list pattern, sized for a card grid rather than a long-scroll page. Sub-program pills are placeholders for whatever links these end up as (anchor jumps, sub-pages, or registration links) — not yet wired.
+  </footer>
+
+</div>
+</body>
+</html>
