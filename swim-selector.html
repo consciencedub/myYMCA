@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find the Right Swim Lesson | Sewickley YMCA</title>
+<style>
+  :root{
+    --teal-dark:#206463;
+    --teal:#3aab90;
+    --teal-light:#52c5be;
+    --orange:#f6a81e;
+    --purple:#7d1d89;
+    --magenta:#b71289;
+    --blue:#285db0;
+    --red:#e81d2c;
+    --ink:#2c3a3a;
+    --muted:#6b7878;
+    --bg:#f4f6f6;
+    --card:#ffffff;
+    --not-yet:#575f60;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+  }
+  header{
+    background:#fff;
+    padding:24px 28px 18px;
+    border-bottom:5px solid var(--teal-dark);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  header .title-block h1{
+    margin:0;
+    font-size:1.7rem;
+    letter-spacing:0.5px;
+    color:var(--teal-dark);
+    font-weight:800;
+    text-transform:uppercase;
+  }
+  header .title-block p{
+    margin:4px 0 0;
+    color:var(--muted);
+    font-size:0.95rem;
+  }
+  .ylogo{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-weight:800;
+    font-size:1.1rem;
+    color:var(--teal-dark);
+  }
+  .ylogo .tri{
+    width:34px;height:34px;
+    background:linear-gradient(135deg, var(--orange) 50%, var(--teal) 50%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+  main{
+    max-width:920px;
+    margin:0 auto;
+    padding:24px 20px 60px;
+  }
+  .progress{
+    display:flex;
+    gap:6px;
+    margin-bottom:22px;
+  }
+  .progress .dot{
+    flex:1;
+    height:6px;
+    border-radius:4px;
+    background:#dbe3e3;
+  }
+  .progress .dot.done{background:var(--teal-dark);}
+  .card{
+    background:var(--card);
+    border-radius:14px;
+    box-shadow:0 2px 14px rgba(32,100,99,0.08);
+    padding:30px 28px;
+    margin-bottom:20px;
+  }
+  .step-label{
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-size:0.78rem;
+    font-weight:700;
+    color:var(--teal);
+    margin-bottom:10px;
+  }
+  h2{
+    margin:0 0 18px;
+    font-size:1.3rem;
+    color:var(--teal-dark);
+  }
+  .age-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:14px;
+  }
+  .age-option{
+    border:2px solid #e1e8e8;
+    background:#fbfcfc;
+    border-radius:12px;
+    padding:18px 16px;
+    cursor:pointer;
+    text-align:left;
+    transition:all .15s ease;
+  }
+  .age-option:hover{
+    border-color:var(--teal);
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(58,171,144,0.18);
+  }
+  .age-option .age-range{
+    font-weight:700;
+    color:var(--ink);
+    font-size:0.95rem;
+  }
+  .age-option .age-track{
+    color:var(--orange);
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:0.85rem;
+    margin-top:8px;
+  }
+  .age-option .age-stages{
+    color:var(--orange);
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:0.85rem;
+  }
+  .question-text{
+    font-size:1.15rem;
+    line-height:1.5;
+    color:var(--ink);
+    margin-bottom:22px;
+  }
+  .answer-row{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    border:none;
+    border-radius:10px;
+    padding:14px 26px;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform .1s ease, box-shadow .1s ease;
+  }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn-notyet{
+    background:#eceff0;
+    color:var(--not-yet);
+  }
+  .btn-notyet:hover{ background:#e0e5e5; }
+  .btn-yes{
+    background:var(--teal-dark);
+    color:#fff;
+  }
+  .btn-yes:hover{ box-shadow:0 4px 12px rgba(32,100,99,0.35); }
+  .stage-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 14px;
+    border-radius:999px;
+    color:#fff;
+    font-weight:800;
+    font-size:0.85rem;
+    text-transform:uppercase;
+    letter-spacing:0.4px;
+  }
+  .result-header{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+  .result-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:76px;
+    height:76px;
+    border-radius:16px;
+    color:#fff;
+    font-weight:900;
+    font-size:1.6rem;
+  }
+  .result-title{
+    font-size:1.5rem;
+    font-weight:800;
+    color:var(--ink);
+  }
+  .result-track{
+    color:var(--muted);
+    font-size:0.95rem;
+    margin-top:2px;
+  }
+  .result-desc{
+    margin-top:18px;
+    font-size:1.02rem;
+    line-height:1.6;
+    color:var(--ink);
+  }
+  .result-desc strong{ color:var(--teal-dark); }
+  .path-trace{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid #e6ecec;
+    font-size:0.88rem;
+    color:var(--muted);
+  }
+  .path-trace .trace-item{
+    display:inline-block;
+    margin:4px 6px 4px 0;
+    padding:4px 10px;
+    border-radius:999px;
+    background:#f0f4f4;
+  }
+  .actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:26px;
+  }
+  .btn-primary{
+    background:var(--orange);
+    color:#3a2a05;
+  }
+  .btn-secondary{
+    background:#fff;
+    color:var(--teal-dark);
+    border:2px solid var(--teal-dark);
+  }
+  .link-btn{
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+  }
+  footer{
+    background:var(--teal-dark);
+    color:#fff;
+    padding:18px 20px;
+    text-align:center;
+    font-size:0.95rem;
+  }
+  footer a{
+    color:#fff;
+    background:var(--orange);
+    padding:6px 14px;
+    border-radius:8px;
+    font-weight:800;
+    text-decoration:none;
+    margin:0 6px;
+    display:inline-block;
+  }
+  .back-link{
+    background:none;
+    border:none;
+    color:var(--muted);
+    font-size:0.9rem;
+    cursor:pointer;
+    padding:0;
+    margin-bottom:14px;
+    text-decoration:underline;
+  }
+  .note{
+    font-size:0.88rem;
+    color:var(--muted);
+    margin-top:16px;
+  }
+  @media (max-width:520px){
+    header{padding:18px;}
+    header h1{font-size:1.3rem;}
+    .card{padding:22px 18px;}
+    .answer-row{flex-direction:column;}
+    .btn{width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title-block">
+    <h1>Find the Right Swim Lesson</h1>
+    <p>Sewickley YMCA &middot; Group Swim Lessons Placement Guide</p>
+  </div>
+  <div class="ylogo"><div class="tri"></div>the Y</div>
+</header>
+
+<main>
+  <div class="progress" id="progress"></div>
+  <div id="app"></div>
+</main>
+
+<footer>
+  Ready to sign up?
+  <a href="https://www.sewickleyymca.org/aquatics/group-swim-lessons" target="_blank" rel="noopener">Sign up online</a>
+  or call <strong>412-741-9622 ext. 121</strong>
+</footer>
+
+<script>
+/* ---------- Data model, derived directly from the Sewickley YMCA
+   "Find the Right Swim Lesson" flyer ---------- */
+
+const AGE_GROUPS = [
+  {
+    id: 'parentchild',
+    range: '6 months – 3 years',
+    track: 'Parent & Child',
+    stagesLabel: 'Stages A–B',
+    startStage: 'A',
+    stageOrder: ['A','B'],
+    capMessage: "Your child has mastered everything in the Parent & Child track. Once they turn 3, re-check placement using the Preschool age group — many graduates move into Stage 1."
+  },
+  {
+    id: 'preschool',
+    range: '3 years – 5 years',
+    track: 'Preschool',
+    stagesLabel: 'Stages 1–4',
+    startStage: '1',
+    stageOrder: ['1','2','3','4'],
+    capMessage: "Your child has mastered everything in the Preschool track (through Stage 4). Once they turn 6, continue their progress in the School Age track at Stage 5."
+  },
+  {
+    id: 'schoolage',
+    range: '6 years – 12 years',
+    track: 'School Age',
+    stagesLabel: 'Stages 1–6',
+    startStage: '1',
+    stageOrder: ['1','2','3','4','5','6'],
+    capMessage: "Congratulations — your swimmer has mastered all the skills through Stage 6! Ask our aquatics staff about swim team, lifeguard prep, or advanced skill clinics."
+  },
+  {
+    id: 'teenadult',
+    range: '12+ years',
+    track: 'Teen & Adult',
+    stagesLabel: 'Stages 1–6',
+    startStage: '1',
+    stageOrder: ['1','2','3','4','5','6'],
+    capMessage: "Congratulations — you've mastered all the skills through Stage 6! Ask our aquatics staff about stroke clinics, fitness swim, or lifeguard certification."
+  }
+];
+
+/* Each stage: the readiness question, and what "NOT YET" placement means. */
+const STAGES = {
+  'A': {
+    number: 'A', name: 'Water Discovery', color: 'var(--teal)',
+    question: 'Can the student respond to verbal cues and jump on land?',
+    placementDesc: 'Introduces infants and toddlers to the aquatic environment through exploration, and helps them become comfortable in and around the water, all with the help of a participating adult.'
+  },
+  'B': {
+    number: 'B', name: 'Water Exploration', color: 'var(--teal-light)',
+    question: 'Is the student comfortable working with an instructor without the parent in the water?',
+    placementDesc: 'Builds on skills from Water Discovery and prepares students, with the help of a participating adult, for independent movement in Water Acclimation.'
+  },
+  '1': {
+    number: '1', name: 'Water Acclimation', color: 'var(--purple)',
+    question: 'Will the student go under water voluntarily?',
+    placementDesc: 'Builds comfort with underwater exploration and basic self-rescue skills through fun and engaging lessons, working toward independence from the instructor.'
+  },
+  '2': {
+    number: '2', name: 'Water Movement', color: 'var(--magenta)',
+    question: 'Can the student do a front and back float on their own?',
+    placementDesc: 'Builds on the skills learned in Water Acclimation by focusing on body position and control, and directional change while making the transition to deeper water.'
+  },
+  '3': {
+    number: '3', name: 'Water Stamina', color: 'var(--orange)',
+    question: 'Can the student swim 10 to 15 yards on their front and back?',
+    placementDesc: 'Builds on the skills learned in Water Movement by developing stamina in front crawl and back crawl, as well as an introduction to elementary backstroke and treading water.'
+  },
+  '4': {
+    number: '4', name: 'Stroke Introduction', color: 'var(--teal-dark)',
+    question: 'Can the student swim 15 yards of front and back crawl?',
+    placementDesc: 'Introduces rotary breathing and the basics of breaststroke and butterfly to develop confidence in all major swim strokes.'
+  },
+  '5': {
+    number: '5', name: 'Stroke Development', color: 'var(--blue)',
+    question: 'Can the student swim front crawl, back crawl, and breaststroke across the pool?',
+    placementDesc: 'Coordinates and refines skills for all major swim strokes, building endurance and technique.'
+  },
+  '6': {
+    number: '6', name: 'Stroke Mechanics', color: 'var(--red)',
+    question: 'Can the student swim front crawl, back crawl, and breaststroke across the pool and back?',
+    placementDesc: 'Refines stroke technique on all major swim strokes to develop swimmers who are ready for swim team, lifeguarding prep, or advanced fitness swimming.'
+  }
+};
+
+let state = {
+  step: 'age',       // 'age' | 'question' | 'result'
+  ageGroup: null,    // AGE_GROUPS entry
+  stageIndex: 0,     // index into ageGroup.stageOrder
+  trace: []          // list of {stage, answer}
+};
+
+function render(){
+  const app = document.getElementById('app');
+  const progress = document.getElementById('progress');
+
+  if(state.step === 'age'){
+    progress.innerHTML = '';
+    app.innerHTML = `
+      <div class="card">
+        <div class="step-label">Step 1 of 2</div>
+        <h2>What age group does the student fall into?</h2>
+        <div class="age-grid" id="age-grid"></div>
+        <p class="note">All age groups are taught the same core skills, divided according to developmental milestones.</p>
+      </div>
+    `;
+    const grid = document.getElementById('age-grid');
+    AGE_GROUPS.forEach(ag => {
+      const el = document.createElement('button');
+      el.className = 'age-option';
+      el.innerHTML = `
+        <div class="age-range">${ag.range}</div>
+        <div class="age-track">${ag.track}</div>
+        <div class="age-stages">${ag.stagesLabel}</div>
+      `;
+      el.onclick = () => {
+        state.ageGroup = ag;
+        state.stageIndex = 0;
+        state.trace = [];
+        state.step = 'question';
+        render();
+      };
+      grid.appendChild(el);
+    });
+    return;
+  }
+
+  if(state.step === 'question'){
+    const ag = state.ageGroup;
+    const stageKey = ag.stageOrder[state.stageIndex];
+    const stage = STAGES[stageKey];
+    const totalSteps = ag.stageOrder.length;
+
+    progress.innerHTML = '';
+    for(let i=0;i<totalSteps;i++){
+      const d = document.createElement('div');
+      d.className = 'dot' + (i <= state.stageIndex ? ' done' : '');
+      progress.appendChild(d);
+    }
+
+    app.innerHTML = `
+      <div class="card">
+        <button class="back-link" id="back-btn">&larr; Start over / change age group</button>
+        <div class="step-label">Step 2 of 2 &middot; ${ag.track} &middot; Checking Stage ${stage.number}</div>
+        <h2><span class="stage-chip" style="background:${stage.color}">Stage ${stage.number} &middot; ${stage.name}</span></h2>
+        <div class="question-text">${stage.question}</div>
+        <div class="answer-row">
+          <button class="btn btn-notyet" id="btn-notyet">NOT YET</button>
+          <button class="btn btn-yes" id="btn-yes" style="background:${stage.color}">YES</button>
+        </div>
+      </div>
+    `;
+    document.getElementById('back-btn').onclick = () => {
+      state.step = 'age';
+      render();
+    };
+    document.getElementById('btn-notyet').onclick = () => {
+      state.trace.push({stage: stageKey, answer:'NOT YET'});
+      state.step = 'result';
+      state.resultStage = stageKey;
+      state.atCap = false;
+      render();
+    };
+    document.getElementById('btn-yes').onclick = () => {
+      state.trace.push({stage: stageKey, answer:'YES'});
+      if(state.stageIndex + 1 < ag.stageOrder.length){
+        state.stageIndex += 1;
+        render();
+      } else {
+        state.step = 'result';
+        state.resultStage = stageKey;
+        state.atCap = true;
+        render();
+      }
+    };
+    return;
+  }
+
+  if(state.step === 'result'){
+    const ag = state.ageGroup;
+    const stage = STAGES[state.resultStage];
+    progress.innerHTML = '';
+    const totalSteps = ag.stageOrder.length;
+    for(let i=0;i<totalSteps;i++){
+      const d = document.createElement('div');
+      d.className = 'dot done';
+      progress.appendChild(d);
+    }
+
+    const traceHtml = state.trace.map(t => {
+      const s = STAGES[t.stage];
+      return `<span class="trace-item">Stage ${s.number}: ${t.answer}</span>`;
+    }).join('');
+
+    const recommendation = state.atCap
+      ? `<div class="result-desc">${ag.capMessage}</div>`
+      : `<div class="result-desc">We recommend <strong>Stage ${stage.number} &middot; ${stage.name}</strong>. ${stage.placementDesc}</div>`;
+
+    app.innerHTML = `
+      <div class="card">
+        <button class="back-link" id="back-btn">&larr; Start over</button>
+        <div class="step-label">Recommended Placement</div>
+        <div class="result-header">
+          <div class="result-badge" style="background:${stage.color}">${stage.number}</div>
+          <div>
+            <div class="result-title">${state.atCap ? 'Stage ' + stage.number + ' — Mastered!' : 'Stage ' + stage.number + ' · ' + stage.name}</div>
+            <div class="result-track">${ag.track} &middot; ${ag.range}</div>
+          </div>
+        </div>
+        ${recommendation}
+        <div class="path-trace">
+          <div style="margin-bottom:6px;">How we got here:</div>
+          ${traceHtml}
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary link-btn" href="https://www.sewickleyymca.org/aquatics/group-swim-lessons" target="_blank" rel="noopener">Sign Up Online</a>
+          <button class="btn btn-secondary" id="restart-btn">Check Another Student</button>
+        </div>
+      </div>
+    `;
+    document.getElementById('back-btn').onclick = () => {
+      state.step = 'age';
+      render();
+    };
+    document.getElementById('restart-btn').onclick = () => {
+      state = {step:'age', ageGroup:null, stageIndex:0, trace:[]};
+      render();
+    };
+    return;
+  }
+}
+
+render();
+</script>
+
+</body>
+</html>
