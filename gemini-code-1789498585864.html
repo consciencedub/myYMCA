@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sewickley Valley YMCA - Unified Stepped Donation Flow</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-image: url('kiddo-background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 40px 20px;
+            color: #1a1a1a;
+        }
+
+        .comp-card {
+            width: 540px;
+            margin: 0 0 60px 300px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+        }
+        .official-logo {
+            height: 34px;
+            width: auto;
+        }
+
+        .card-body {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .impact-section {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+        .impact-section h3 {
+            font-size: 11.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #0f172a;
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 4px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .impact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            font-size: 11px;
+            line-height: 1.35;
+            color: #334155;
+        }
+        .impact-item:last-child {
+            margin-bottom: 0;
+        }
+        .impact-icon {
+            font-size: 13px;
+            margin-right: 8px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .section-divider {
+            border: 0;
+            border-top: 1px solid #cbd5e1;
+            margin: 25px 0;
+        }
+
+        .steps-header {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #64748b;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 8px;
+        }
+        .steps-header strong {
+            color: #0f172a;
+        }
+        .step-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 4px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 9px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 12px;
+            box-sizing: border-box;
+            background: #fff;
+        }
+        .row-inputs {
+            display: flex;
+            gap: 10px;
+        }
+        .row-inputs .form-group {
+            flex: 1;
+        }
+        
+        .freq-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .freq-option {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            background: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .freq-option.active {
+            border: 2px solid #5c2e91;
+            background: #f4ecff;
+            color: #5c2e91;
+        }
+        .gift-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .gift-card {
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 8px;
+            position: relative;
+        }
+        .gift-card.popular {
+            border: 2px solid #5c2e91;
+        }
+        .popular-badge {
+            position: absolute;
+            top: -7px;
+            right: 8px;
+            background: #5c2e91;
+            color: #ffffff;
+            font-size: 7.5px;
+            font-weight: 800;
+            padding: 2px 5px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+        .gift-amount {
+            font-size: 15px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+        .gift-desc {
+            font-size: 9px;
+            color: #64748b;
+            line-height: 1.25;
+        }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 11px;
+            background: #5c2e91;
+            border: 2px solid #5c2e91;
+            border-radius: 4px;
+            font-weight: 800;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 11px;
+            color: #ffffff;
+            cursor: pointer;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
+        }
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .btn-secondary {
+            flex: 1;
+            padding: 10px;
+            background: #e2e8f0;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 11px;
+            color: #334155;
+        }
+        .card-preview {
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 11px;
+            color: #334155;
+        }
+        .success-box {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+            color: #065f46;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 11.5px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .footer-branding {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 12px;
+        }
+        .footer-brand-text {
+            font-size: 9px;
+            color: #64748b;
+            line-height: 1.3;
+        }
+        .qr-placeholder {
+            width: 30px;
+            height: 30px;
+            background: #0f172a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="comp-card">
+        <div class="card-header">
+            <img src="y-logo-agc.png" alt="Sewickley Valley YMCA Logo" class="official-logo">
+        </div>
+        <div class="card-body">
+            <div>
+                <!-- Impact Box Only at the Top of the Card -->
+                <div class="impact-section">
+                    <h3>Your Annual Giving Impact In Action</h3>
+                    <div class="impact-item"><span class="impact-icon">💰</span><span><strong>$105,529</strong> helped 54 children access dependable, high-quality child care[cite: 1].</span></div>
+                    <div class="impact-item"><span class="impact-icon">🍎</span><span><strong>40,675 lbs</strong> of nutritious food were distributed to local families[cite: 1].</span></div>
+                    <div class="impact-item"><span class="impact-icon">💪</span><span><strong>$291,090</strong> helped 966 individuals access membership opportunities[cite: 1].</span></div>
+                    <div class="impact-item"><span class="impact-icon">⛺</span><span><strong>$94,772</strong> helped 100 children experience day camp[cite: 1].</span></div>
+                </div>
+
+                <!-- Step 1: Amount -->
+                <div class="steps-header"><strong>STEP 1: AMOUNT</strong> &gt; STEP 2: DETAILS &gt; STEP 3: PAYMENT &gt; STEP 4: CONFIRM</div>
+                <div class="step-title">Step 1: Select Your Gift</div>
+
+                <!-- Campaigner Dropdown Added Here -->
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label class="form-label">Select a Campaigner</label>
+                    <select class="form-input">
+                        <option value="">-- Choose Campaigner (Optional) --</option>
+                        <option value="campaigner-1">Team Y Staff Campaign</option>
+                        <option value="campaigner-2">Board Member Campaign</option>
+                        <option value="campaigner-3">General Annual Campaign</option>
+                    </select>
+                </div>
+                
+                <div class="freq-selector">
+                    <div class="freq-option active">⊙ One-Time Gift</div>
+                    <div class="freq-option">◯ Monthly Sustainer</div>
+                </div>
+
+                <div class="gift-grid">
+                    <div class="gift-card">
+                        <div class="gift-amount">$100</div>
+                        <div class="gift-desc">Helps 2 kids build swimming skills.</div>
+                    </div>
+                    <div class="gift-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="gift-amount">$250</div>
+                        <div class="gift-desc">Keeps a family fed for a full year.</div>
+                    </div>
+                    <div class="gift-card">
+                        <div class="gift-amount">$500</div>
+                        <div class="gift-desc">Sends 2 kids to camp for 2 weeks.</div>
+                    </div>
+                    <div class="gift-card">
+                        <div class="gift-amount">$1,000</div>
+                        <div class="gift-desc">Provides 1 month of child care.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Other Amount</label>
+                    <input type="text" class="form-input" value="$ ">
+                </div>
+
+                <div class="btn-primary" style="text-align: center;">Continue to Details</div>
+
+                <hr class="section-divider">
+
+                <!-- Step 2: Details & Matching -->
+                <div class="steps-header">STEP 1: AMOUNT &gt; <strong>STEP 2: DETAILS</strong> &gt; STEP 3: PAYMENT &gt; STEP 4: CONFIRM</div>
+                <div class="step-title">Step 2: Your Information &amp; Matching</div>
+                
+                <div class="row-inputs">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" value="Steve">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-input" value="Farrar">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" value="steve@example.com">
+                </div>
+
+                <div class="form-group" style="margin-top: 10px; border-top: 1px solid #cbd5e1; padding-top: 10px;">
+                    <label class="form-label">Employer Matching (Double the Donation)</label>
+                    <span style="font-size: 9.5px; color: #64748b; display: block; margin-bottom: 4px;">Does your employer match charitable gifts? Search below:</span>
+                    <input type="text" class="form-input" placeholder="🔍 Search employer name...">
+                </div>
+
+                <!-- Recognition / Memorium Dropdown and Empty Field Added Below Step 2 Employer Matching -->
+                <div class="form-group" style="margin-top: 12px;">
+                    <label class="form-label">Recognition / Tribute</label>
+                    <div class="row-inputs">
+                        <div style="flex: 1;">
+                            <select class="form-input">
+                                <option value="individual">An Individual</option>
+                                <option value="memory">In Memory Of</option>
+                                <option value="anonymous">Anonymous</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <input type="text" class="form-input" placeholder="Name or details...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <div class="btn-secondary" style="padding: 11px; text-align: center; cursor: pointer;">&lt; Back</div>
+                    <div class="btn-primary" style="margin-top: 0; flex: 2; text-align: center;">Continue to Payment</div>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Step 3: Secure Payment -->
+                <div class="steps-header">STEP 1: AMOUNT &gt; STEP 2: DETAILS &gt; <strong>STEP 3: PAYMENT</strong> &gt; STEP 4: CONFIRM</div>
+                <div class="step-title">Step 3: Secure Payment</div>
+                
+                <div class="card-preview">
+                    <strong>Selected Gift:</strong> $250.00 (One-Time Gift)<br>
+                    <span style="color: #64748b; font-size: 10px;">Keeps a family fed with a full year of monthly food distributions.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Payment Method</label>
+                    <div style="font-size: 11px; margin-bottom: 6px;">
+                        <label><input type="radio" checked> Credit Card</label> &nbsp;&nbsp;&nbsp;
+                        <label><input type="radio"> Bank / ACH</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Card Number</label>
+                    <input type="text" class="form-input" value="4532 •••• •••• 8910">
+                </div>
+
+                <div class="row-inputs">
+                    <div class="form-group">
+                        <label class="form-label">Expiration</label>
+                        <input type="text" class="form-input" value="10 / 28">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">CVV Code</label>
+                        <input type="text" class="form-input" value="382">
+                    </div>
+                </div>
+                
+                <div style="font-size: 10px; color: #475569; margin-top: 6px; margin-bottom: 15px;">
+                    💡 <strong>United Way Donor Code #286</strong> designates the Y.
+                </div>
+
+                <div class="btn-row">
+                    <div class="btn-secondary" style="padding: 11px; text-align: center; cursor: pointer;">&lt; Back</div>
+                    <div class="btn-primary" style="margin-top: 0; flex: 2; text-align: center;">Complete Gift ($250)</div>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Step 4: Confirmation -->
+                <div class="steps-header">STEP 1: AMOUNT &gt; STEP 2: DETAILS &gt; STEP 3: PAYMENT &gt; <strong>STEP 4: CONFIRM</strong></div>
+                
+                <div class="success-box">
+                    🎉 THANK YOU FOR YOUR GIFT!
+                </div>
+
+                <div class="card-preview" style="border-left: 4px solid #10b981;">
+                    <strong>Confirmation #:</strong> SV-2026-8834<br>
+                    <strong>Amount Processed:</strong> $250.00<br>
+                    <strong>Direct Impact:</strong> Keeps a family fed with a full year of monthly food distributions.
+                </div>
+
+                <div class="card-preview">
+                    <strong>Matching Gift Next Steps:</strong><br>
+                    <span style="font-size: 10.5px; color: #64748b;">We recorded your company matching preference. Access your match submission portal below:</span><br>
+                    <button style="margin-top: 6px; background: #5c2e91; color: #ffffff; border: 1px solid #5c2e91; padding: 6px 10px; border-radius: 3px; font-size: 10px; font-weight: 700; cursor: pointer;">Access Matching Form &rarr;</button>
+                </div>
+
+                <p style="font-size: 9.5px; color: #64748b; text-align: center; margin-top: 8px; margin-bottom: 15px;">
+                    A receipt has been emailed to your address.
+                </p>
+
+                <div class="btn-primary" style="text-align: center;">Return to Sewickley YMCA Home</div>
+            </div>
+
+            <div class="footer-branding">
+                <div class="footer-brand-text">SEWICKLEY VALLEY YMCA<br>625 Blackburn Road, Sewickley, PA</div>
+                <div class="qr-placeholder"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
