@@ -87,7 +87,7 @@
   .why-wrap { background: var(--paper); }
 
   /* Bento */
-  .bento { display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: auto auto; gap: 16px; }
+  .bento { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .bento .big { grid-row: span 2; min-height: 360px; }
   .tile { border: 1px solid var(--ink); display: grid; grid-template-columns: 1fr 1fr; }
   .tile .img { border: 0; border-right: 1px solid var(--ink); min-height: 170px; }
@@ -212,13 +212,28 @@
     <section class="annotated" aria-label="Program highlights">
       <span class="n">4</span>
       <div class="inner bento">
-        <div class="img big"><span>Membership promo graphic</span></div>
         <article class="tile">
-          <div class="img"><span>Aquatics photo</span></div>
+          <div class="img"><span>Group fitness photo</span></div>
+          <div class="body">
+            <h3>Reserve Now</h3>
+            <p>Save your spot in a group fitness class for strength, balance, and wellness.</p>
+            <a href="#" class="link">Reserve a class</a>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="img"><span>Members photo</span></div>
+          <div class="body">
+            <h3>Become a Member</h3>
+            <p>Pools, fitness, programs, and a community that looks out for one another.</p>
+            <a href="#" class="link">See membership options</a>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="img"><span>Swim lessons photo</span></div>
           <div class="body">
             <h3>Swim Lessons</h3>
-            <p>Two indoor pools, certified instructors, and water fitness classes for everyone.</p>
-            <a href="#" class="link">Explore Aquatics</a>
+            <p>Group, private, and adaptive lessons for kids and adults, taught by certified instructors.</p>
+            <a href="#" class="link">Explore Swim Lessons</a>
           </div>
         </article>
         <article class="tile">
@@ -298,7 +313,7 @@
       <li><span class="n">1</span><p><b>Navigation.</b> Current nav with About added between Senior Central and Give. The dashed outline marks the new link and is not part of the design.</p></li>
       <li><span class="n">2</span><p><b>Hero.</b> Unchanged: seasonal video with the Fall Program Guide logo and Explore Now button.</p></li>
       <li><span class="n">3</span><p><b>Turkey Trot.</b> Unchanged. The live banner graphic lists November 24; Thanksgiving is Thursday, November 26, 2026.</p></li>
-      <li><span class="n">4</span><p><b>Program highlights.</b> Unchanged: membership promo, aquatics, and Golden Gatherings.</p></li>
+      <li><span class="n">4</span><p><b>Program highlights.</b> Four equal cards replace the membership graphic and two tiles: Reserve Now (group fitness, links to /fitness/reserve/), Become a Member (links to /join/), Swim Lessons (renamed from Waves Ahead, links to group swim lessons), and Fun and Fellowship (renamed from Golden Gatherings, links to Senior Central Fun and Fellowship). Two columns on desktop, one on mobile.</p></li>
       <li><span class="n">5</span><p><b>Together we can build a better us.</b> Merges the old "Now be part of the why" giving section with the old mission section. The "part of the why" line becomes the kicker, the food, care, and connection message leads the intro, and the What We Do cards sit below. About the Y goes to sewickleyymca.org/about/; Give goes to give.sewickleyymca.org.</p></li>
       <li><span class="n">6</span><p><b>Email sign-up.</b> Moved from the middle of the page to just above the footer, so it's the last thing visitors see.</p></li>
     </ol>
@@ -307,6 +322,7 @@
       <p><s>Achieve your fitness goals</s> (group fitness section)</p>
       <p><s>Member quotes</s> (testimonial carousel)</p>
       <p><s>Now be part of the why</s> (merged into section 5)</p>
+      <p><s>Membership promo graphic</s> (replaced by the Reserve Now and Become a Member cards)</p>
     </div>
   </aside>
 </div>
