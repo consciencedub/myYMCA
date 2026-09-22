@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nav Update Wireframe – About Link – Sewickley YMCA</title>
+<style>
+  :root {
+    --ink: #222;
+    --mid: #666;
+    --line: #bbb;
+    --fill: #e9e9e9;
+    --paper: #f6f6f6;
+    --white: #fff;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--mono); font-size: 14px; line-height: 1.55; color: var(--ink); background: var(--paper); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  .wf-bar { padding: 12px 20px; background: var(--ink); color: var(--white); font-size: 12px; }
+  .wf-bar strong { font-weight: 700; }
+
+  main { max-width: 1240px; margin: 0 auto; padding: 28px 16px 60px; }
+  h1 { font-size: 20px; margin: 0 0 6px; }
+  h2 { font-size: 15px; margin: 0 0 10px; }
+  p { margin: 0 0 12px; max-width: 72ch; }
+  .muted { color: var(--mid); }
+
+  .block { margin-top: 32px; }
+  .label { font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+
+  .frame { background: var(--white); border: 1px solid var(--line); }
+
+  /* Desktop header */
+  .site-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 24px; }
+  .logo { width: 64px; height: 40px; border: 1px dashed var(--mid); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--mid); flex-shrink: 0; }
+  .nav { display: flex; gap: 18px; align-items: center; font-size: 13px; flex-wrap: wrap; justify-content: flex-end; }
+  .nav a { text-decoration: none; padding: 4px 0; white-space: nowrap; }
+  .nav .join { border: 2px solid var(--ink); padding: 5px 10px; font-weight: 700; }
+  .page-stub { height: 70px; border-top: 1px dashed var(--line); background: var(--fill); }
+
+  /* New item highlight */
+  .new { position: relative; outline: 2px dashed var(--ink); outline-offset: 4px; font-weight: 700; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; background: var(--ink); color: var(--white); padding: 1px 6px; margin-left: 8px; vertical-align: middle; }
+
+  /* Mobile */
+  .mobile-row { display: flex; gap: 32px; flex-wrap: wrap; align-items: flex-start; }
+  .phone { width: 320px; max-width: 100%; }
+  .m-head { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  .burger { border: 1px solid var(--ink); padding: 5px 10px; font-size: 12px; }
+  .m-menu { list-style: none; margin: 0; padding: 0; }
+  .m-menu li { border-bottom: 1px solid var(--line); }
+  .m-menu a { display: block; padding: 13px 16px; text-decoration: none; font-size: 13px; }
+  .m-menu a.new { outline-offset: -6px; }
+  .m-menu .join a { font-weight: 700; text-align: center; margin: 14px 16px; border: 2px solid var(--ink); padding: 10px; }
+  .m-menu .join { border-bottom: 0; }
+
+  .notes { margin-top: 36px; background: var(--white); border: 1px solid var(--line); padding: 20px 24px; }
+  .notes ul { margin: 0; padding-left: 18px; }
+  .notes li { margin-bottom: 8px; max-width: 80ch; }
+
+  @media (max-width: 900px) {
+    .site-head { flex-direction: column; align-items: flex-start; }
+    .nav { justify-content: flex-start; gap: 12px 16px; }
+  }
+
+  .chev { margin-left: 6px; font-size: 12px; position: relative; top: -3px; }
+  .nav { gap: 22px; }
+  .nav .join { background: var(--ink); color: var(--white); border: 2px solid var(--ink); border-radius: 8px; padding: 5px 14px; }
+  .search { display: inline-flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 150px; border: 2px solid var(--mid); border-radius: 20px; padding: 4px 10px; font-size: 12px; color: var(--mid); background: var(--white); }
+  .search.wide { width: 100%; }
+  .mag { font-size: 14px; }
+  .m-search { padding: 12px 16px; }
+  .m-menu a { display: flex; justify-content: space-between; align-items: center; }
+  .m-menu .join a { justify-content: center; background: var(--ink); color: var(--white); border-radius: 8px; }
+  .plus { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="wf-bar"><strong>Primary nav update</strong> | Low-fidelity wireframe, not final design | Adds an About link</div>
+
+<main>
+  <h1>Adding About to the main navigation</h1>
+  <p class="muted">About sits as its own top-level link, with no dropdown. It goes to sewickleyymca.org/about/.</p>
+
+  <div class="block">
+    <div class="label">Desktop: current nav</div>
+    <div class="frame">
+      <header class="site-head">
+        <div class="logo">Y LOGO</div>
+        <nav class="nav" aria-label="Primary nav, before">
+          <a href="#">Programs &amp; Classes<span class="chev" aria-hidden="true">&#8964;</span></a>
+          <a href="#">Amenities<span class="chev" aria-hidden="true">&#8964;</span></a>
+          <a href="#">Senior Central<span class="chev" aria-hidden="true">&#8964;</span></a>
+          <a href="#">Give</a>
+          <a href="#">Membership</a>
+          <a href="#" class="join">Join Now</a>
+          <span class="search" aria-hidden="true">Search...<span class="mag">&#9906;</span></span>
+        </nav>
+      </header>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="label">Desktop: with About added</div>
+    <div class="frame">
+      <header class="site-head">
+        <div class="logo">Y LOGO</div>
+        <nav class="nav" aria-label="Primary nav, after">
+          <a href="#">Programs &amp; Classes<span class="chev" aria-hidden="true">&#8964;</span></a>
+          <a href="#">Amenities<span class="chev" aria-hidden="true">&#8964;</span></a>
+          <a href="#">Senior Central<span class="chev" aria-hidden="true">&#8964;</span></a>
+          <a href="#" class="new">About</a>
+          <a href="#">Give</a>
+          <a href="#">Membership</a>
+          <a href="#" class="join">Join Now</a>
+          <span class="search" aria-hidden="true">Search...<span class="mag">&#9906;</span></span>
+        </nav>
+      </header>
+      <div class="page-stub" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="label">Mobile: menu open</div>
+    <div class="mobile-row">
+      <div class="frame phone">
+        <div class="m-head"><div class="logo">Y LOGO</div><span class="burger">Close</span></div>
+        <ul class="m-menu" aria-label="Mobile menu, after">
+          <li class="m-search"><span class="search wide" aria-hidden="true">Search...<span class="mag">&#9906;</span></span></li>
+          <li><a href="#">Programs &amp; Classes<span class="plus" aria-hidden="true">+</span></a></li>
+          <li><a href="#">Amenities<span class="plus" aria-hidden="true">+</span></a></li>
+          <li><a href="#">Senior Central<span class="plus" aria-hidden="true">+</span></a></li>
+          <li><a href="#" class="new">About<span class="tag">New</span></a></li>
+          <li><a href="#">Give</a></li>
+          <li><a href="#">Membership</a></li>
+          <li class="join"><a href="#">Join Now</a></li>
+        </ul>
+      </div>
+      <div class="frame phone">
+        <div class="m-head"><div class="logo">Y LOGO</div><span class="burger">Menu</span></div>
+        <div class="page-stub" style="height:420px" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes" aria-label="Notes">
+    <h2>Notes</h2>
+    <ul>
+      <li>About is a plain link with no dropdown arrow, matching Give and Membership. The dashed outline and New tag are wireframe markers only.</li>
+      <li>It sits after Senior Central and before Give, so the pages about the Y come first and the action links (Give, Membership, Join Now) stay together at the end.</li>
+      <li>Adding About brings the bar to six text links plus Join Now and search. Test it at common laptop widths (around 1280px) to confirm it stays on one line.</li>
+      <li>On mobile, About slots into the same stacked list with no expand control. The + marks items that open a submenu. Join Now stays last and emphasized.</li>
+    </ul>
+  </aside>
+</main>
+
+</body>
+</html>

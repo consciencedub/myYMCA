@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homepage Wireframe – Sewickley YMCA</title>
+<style>
+  :root {
+    --ink: #222;
+    --mid: #666;
+    --line: #bbb;
+    --fill: #e9e9e9;
+    --paper: #f6f6f6;
+    --white: #fff;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--mono); font-size: 14px; line-height: 1.55; color: var(--ink); background: var(--paper); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  .wf-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 12px 20px; background: var(--ink); color: var(--white); font-size: 12px; }
+  .wf-controls { display: flex; gap: 8px; flex-wrap: wrap; }
+  .wf-controls button { font: inherit; cursor: pointer; background: transparent; color: var(--white); border: 1px solid #777; padding: 4px 10px; }
+  .wf-controls button[aria-pressed="true"] { background: var(--white); color: var(--ink); }
+
+  .stage { padding: 28px 16px 60px; }
+  .frame { container-type: inline-size; max-width: 1200px; margin: 0 auto; background: var(--white); border: 1px solid var(--line); transition: max-width .25s ease; }
+  .frame.is-mobile { max-width: 390px; }
+  @media (prefers-reduced-motion: reduce) { .frame { transition: none; } }
+
+  .n { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--white); font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .annotated { position: relative; }
+  .annotated > .n { position: absolute; top: 8px; right: 8px; z-index: 2; outline: 2px solid var(--white); }
+  body.hide-notes .n, body.hide-notes .notes { display: none; }
+
+  .img {
+    background-color: var(--fill);
+    background-image:
+      linear-gradient(to top right, transparent calc(50% - 1px), var(--line) 50%, transparent calc(50% + 1px)),
+      linear-gradient(to bottom right, transparent calc(50% - 1px), var(--line) 50%, transparent calc(50% + 1px));
+    border: 1px solid var(--line); display: flex; align-items: center; justify-content: center;
+    color: var(--mid); font-size: 11px; text-align: center; padding: 8px;
+  }
+  .img span { background: var(--fill); padding: 2px 6px; }
+
+  .btn { display: inline-block; padding: 9px 16px; border: 2px solid var(--ink); text-decoration: none; font-weight: 700; font-size: 13px; background: var(--white); }
+  .btn.solid { background: var(--ink); color: var(--white); }
+  .link { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 12px; }
+  h2 { font-size: 22px; line-height: 1.25; margin: 0 0 10px; }
+  h3 { font-size: 15px; margin: 0 0 8px; }
+  p { margin: 0 0 12px; max-width: 68ch; }
+  .muted { color: var(--mid); }
+  .kicker { font-size: 12px; color: var(--mid); margin-bottom: 4px; }
+
+  /* Alert */
+  .alert { padding: 8px 24px; background: var(--fill); font-size: 12px; text-align: center; border-bottom: 1px solid var(--line); }
+
+  /* Header */
+  .site-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 24px; border-bottom: 1px solid var(--line); }
+  .logo { width: 64px; height: 40px; border: 1px dashed var(--mid); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--mid); flex-shrink: 0; }
+  .nav { display: flex; gap: 20px; align-items: center; font-size: 13px; flex-wrap: wrap; justify-content: flex-end; }
+  .nav a { text-decoration: none; padding: 4px 0; white-space: nowrap; }
+  .nav .about { outline: 2px dashed var(--ink); outline-offset: 4px; font-weight: 700; }
+  .nav .join { background: var(--ink); color: var(--white); border-radius: 8px; padding: 5px 14px; font-weight: 700; }
+  .chev { margin-left: 6px; font-size: 12px; position: relative; top: -3px; }
+  .search { display: inline-flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 140px; border: 2px solid var(--mid); border-radius: 20px; padding: 4px 10px; font-size: 12px; color: var(--mid); }
+  .burger { display: none; border: 1px solid var(--ink); padding: 6px 10px; font-size: 12px; }
+
+  section { padding: 40px 24px; border-bottom: 1px dashed var(--line); }
+  .inner { max-width: 1040px; margin: 0 auto; }
+
+  /* Hero */
+  .hero { padding: 0; }
+  .hero .img { aspect-ratio: 21 / 8; border: 0; flex-direction: column; gap: 14px; }
+  .hero .img .btn { background: var(--white); }
+
+  /* Turkey Trot */
+  .promo { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items: center; }
+  .promo .img { aspect-ratio: 16 / 7; }
+
+  /* Part of the why */
+  .why { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; background: var(--paper); }
+  .why .img { aspect-ratio: 4 / 3; }
+  .why-wrap { background: var(--paper); }
+
+  /* Bento */
+  .bento { display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: auto auto; gap: 16px; }
+  .bento .big { grid-row: span 2; min-height: 360px; }
+  .tile { border: 1px solid var(--ink); display: grid; grid-template-columns: 1fr 1fr; }
+  .tile .img { border: 0; border-right: 1px solid var(--ink); min-height: 170px; }
+  .tile .body { padding: 16px; }
+  .tile p { font-size: 13px; }
+
+  /* Better us */
+  .better { background: var(--fill); }
+  .better-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+  .better-head p { margin: 0; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--white); border: 1px solid var(--ink); padding: 18px 16px; display: flex; flex-direction: column; }
+  .card .icon { width: 40px; height: 40px; border: 1px dashed var(--mid); border-radius: 50%; margin-bottom: 12px; }
+  .card p { font-size: 13px; flex-grow: 1; }
+  .reach { margin-top: 20px; font-size: 13px; }
+
+  /* Email */
+  .email { text-align: center; }
+  .email p { margin-left: auto; margin-right: auto; }
+  .email-row { display: flex; gap: 8px; justify-content: center; max-width: 480px; margin: 16px auto 0; }
+  .field { flex: 1; border: 2px solid var(--mid); padding: 9px 12px; color: var(--mid); font-size: 13px; text-align: left; }
+
+  /* Footer */
+  .foot { padding: 28px 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; font-size: 12px; background: var(--paper); }
+  .foot b { display: block; margin-bottom: 6px; }
+  .foot ul { list-style: none; padding: 0; margin: 0; color: var(--mid); }
+  .foot li { margin-bottom: 3px; }
+
+  /* Notes */
+  .notes { max-width: 1200px; margin: 28px auto 0; background: var(--white); border: 1px solid var(--line); padding: 24px; }
+  .notes h2 { font-size: 16px; }
+  .notes ol { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 14px; }
+  .notes li { display: flex; gap: 12px; font-size: 13px; }
+  .notes li p { margin: 0; }
+  .removed { border-top: 1px dashed var(--line); padding-top: 16px; font-size: 13px; }
+  .removed p { margin: 0 0 6px; }
+  .removed s { color: var(--mid); }
+
+  @container (max-width: 760px) {
+    .nav { display: none; }
+    .burger { display: inline-block; }
+    section { padding: 32px 18px; }
+    .site-head { padding-left: 18px; padding-right: 18px; }
+    h1 { font-size: 24px; }
+    .hero .img { aspect-ratio: 4 / 5; }
+    .promo, .why { grid-template-columns: 1fr; gap: 18px; }
+    .why .img { order: -1; }
+    .bento { grid-template-columns: 1fr; }
+    .bento .big { grid-row: auto; min-height: 240px; }
+    .tile { grid-template-columns: 1fr; }
+    .tile .img { border-right: 0; border-bottom: 1px solid var(--ink); min-height: 150px; }
+    .cards { grid-template-columns: 1fr; }
+    .better-head .btn { width: 100%; text-align: center; }
+    .email-row { flex-direction: column; }
+    .foot { grid-template-columns: 1fr 1fr; }
+  }
+
+  .better-top { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; margin-bottom: 28px; }
+  .better-top .img { aspect-ratio: 4 / 3; background-color: var(--white); }
+  .better-top .img span { background: var(--white); }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  @container (max-width: 760px) {
+    .better-top { grid-template-columns: 1fr; gap: 18px; }
+    .better-top .img { order: -1; }
+    .btn-row .btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wf-bar">
+  <div><strong>Homepage</strong> | Low-fidelity wireframe, not final design | sewickleyymca.org</div>
+  <div class="wf-controls" role="group" aria-label="Wireframe view">
+    <button type="button" id="vDesk" aria-pressed="true">Desktop</button>
+    <button type="button" id="vMob" aria-pressed="false">Mobile</button>
+    <button type="button" id="vNotes" aria-pressed="true">Notes</button>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="frame" id="frame">
+
+    <div class="alert">Site alert bar (for example, a schedule change or closure notice)</div>
+
+    <header class="site-head annotated">
+      <div class="logo">Y LOGO</div>
+      <nav class="nav" aria-label="Primary">
+        <a href="#">Programs &amp; Classes<span class="chev" aria-hidden="true">&#8964;</span></a>
+        <a href="#">Amenities<span class="chev" aria-hidden="true">&#8964;</span></a>
+        <a href="#">Senior Central<span class="chev" aria-hidden="true">&#8964;</span></a>
+        <a href="#" class="about">About</a>
+        <a href="#">Give</a>
+        <a href="#">Membership</a>
+        <a href="#" class="join">Join Now</a>
+        <span class="search" aria-hidden="true">Search...<span>&#9906;</span></span>
+      </nav>
+      <span class="burger">Menu</span>
+      <span class="n" style="top:-11px;right:-11px">1</span>
+    </header>
+
+    <section class="hero annotated" aria-label="Featured">
+      <span class="n">2</span>
+      <div class="img">
+        <span>Background video: Fall Program Guide 2026</span>
+        <span>Fall Program Guide logo</span>
+        <a href="#" class="btn">Explore Now</a>
+      </div>
+    </section>
+
+    <section class="annotated" aria-labelledby="h-trot">
+      <span class="n">3</span>
+      <div class="inner promo">
+        <div class="img"><span>Turkey Trot 5K banner graphic</span></div>
+        <div>
+          <h2 id="h-trot">Sewickley Turkey Trot 5K</h2>
+          <p>Kick off Thanksgiving with a scenic run/walk through Sewickley that supports local seniors through Faith in Action.</p>
+          <a href="#" class="btn">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="annotated" aria-label="Program highlights">
+      <span class="n">4</span>
+      <div class="inner bento">
+        <div class="img big"><span>Membership promo graphic</span></div>
+        <article class="tile">
+          <div class="img"><span>Aquatics photo</span></div>
+          <div class="body">
+            <h3>Waves ahead</h3>
+            <p>Two indoor pools, certified instructors, and water fitness classes for everyone.</p>
+            <a href="#" class="link">Explore Aquatics</a>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="img"><span>Senior programs photo</span></div>
+          <div class="body">
+            <h3>Golden gatherings</h3>
+            <p>Activities that inspire and connect in a welcoming, supportive space.</p>
+            <a href="#" class="link">Explore Programs</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="better annotated" aria-labelledby="h-better">
+      <span class="n">5</span>
+      <div class="inner">
+        <div class="better-top">
+          <div>
+            <p class="kicker">You're a part of the Y. Now be part of the why.</p>
+            <h2 id="h-better">Together we can build a better us</h2>
+            <p>More families than ever turn to the Y for food, care, and connection. Your membership, your time, and your support help us meet that need.</p>
+            <div class="btn-row">
+              <a href="#" class="btn solid">About the Y</a>
+              <a href="#" class="btn">Give</a>
+            </div>
+          </div>
+          <div class="img"><span>Community photo</span></div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>For a Better Us®</h3>
+            <p>Building a healthy spirit, mind, and body for children, individuals, and families across four school districts.</p>
+            <a href="#" class="link">Our mission</a>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>Community Impact Report</h3>
+            <p>See how the Y strengthens programs, expands access, and builds a more connected community.</p>
+            <a href="#" class="link">View the report</a>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>Real Stories, Real Impact</h3>
+            <p>Personal stories from people whose lives have been touched by the Y.</p>
+            <a href="#" class="link">Read impact stories</a>
+          </article>
+        </div>
+        <p class="reach muted">Serving more than 16,000 neighbors a year in the Ambridge Area, Cornell, Moon Area, and Quaker Valley school districts since 1894.</p>
+      </div>
+    </section>
+
+    <section class="email annotated" aria-labelledby="h-email">
+      <span class="n">6</span>
+      <div class="inner">
+        <h2 id="h-email">Be in the know</h2>
+        <p>Sign up for news and events from the Y.</p>
+        <div class="email-row">
+          <span class="field">Email</span>
+          <span class="btn solid">Sign Up</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot" aria-label="Site footer">
+      <div><b>About</b><ul><li>About the Y</li><li>History</li><li>Mission and Impact</li><li>Partners</li><li>Financial Disclosures</li></ul></div>
+      <div><b>Contact</b><ul><li>Directory</li><li>Work for the Y</li><li>Contact Us</li></ul></div>
+      <div><b>Engage</b><ul><li>Become a Member</li><li>Reserve Now</li><li>My Account</li></ul></div>
+      <div><b>Visit</b><ul><li>625 Blackburn Road</li><li>Sewickley, PA 15143</li><li>(412) 741-9622</li></ul></div>
+    </footer>
+
+  </div>
+
+  <aside class="notes" aria-labelledby="h-notes">
+    <h2 id="h-notes">Notes</h2>
+    <ol>
+      <li><span class="n">1</span><p><b>Navigation.</b> Current nav with About added between Senior Central and Give. The dashed outline marks the new link and is not part of the design.</p></li>
+      <li><span class="n">2</span><p><b>Hero.</b> Unchanged: seasonal video with the Fall Program Guide logo and Explore Now button.</p></li>
+      <li><span class="n">3</span><p><b>Turkey Trot.</b> Unchanged. The live banner graphic lists November 24; Thanksgiving is Thursday, November 26, 2026.</p></li>
+      <li><span class="n">4</span><p><b>Program highlights.</b> Unchanged: membership promo, aquatics, and Golden Gatherings.</p></li>
+      <li><span class="n">5</span><p><b>Together we can build a better us.</b> Merges the old "Now be part of the why" giving section with the old mission section. The "part of the why" line becomes the kicker, the food, care, and connection message leads the intro, and the What We Do cards sit below. About the Y goes to sewickleyymca.org/about/; Give goes to give.sewickleyymca.org.</p></li>
+      <li><span class="n">6</span><p><b>Email sign-up.</b> Moved from the middle of the page to just above the footer, so it's the last thing visitors see.</p></li>
+    </ol>
+    <div class="removed">
+      <p><b>Removed from the current homepage</b></p>
+      <p><s>Achieve your fitness goals</s> (group fitness section)</p>
+      <p><s>Member quotes</s> (testimonial carousel)</p>
+      <p><s>Now be part of the why</s> (merged into section 5)</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+  const frame = document.getElementById('frame');
+  const desk = document.getElementById('vDesk');
+  const mob = document.getElementById('vMob');
+  const notes = document.getElementById('vNotes');
+  function setView(mobile) {
+    frame.classList.toggle('is-mobile', mobile);
+    desk.setAttribute('aria-pressed', String(!mobile));
+    mob.setAttribute('aria-pressed', String(mobile));
+  }
+  desk.addEventListener('click', () => setView(false));
+  mob.addEventListener('click', () => setView(true));
+  notes.addEventListener('click', () => {
+    const on = notes.getAttribute('aria-pressed') === 'true';
+    notes.setAttribute('aria-pressed', String(!on));
+    document.body.classList.toggle('hide-notes', on);
+  });
+</script>
+</body>
+</html>
