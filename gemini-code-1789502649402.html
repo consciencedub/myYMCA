@@ -150,7 +150,8 @@
             font-weight: 600;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s ease;
+            font-family: inherit;
+            color: #1a1a1a;
         }
         .freq-option.active {
             border: 2px solid #5c2e91;
@@ -170,17 +171,21 @@
             padding: 8px;
             position: relative;
             cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .gift-card:hover {
-            border-color: #94a3b8;
-        }
-        .gift-card.selected {
-            border: 2px solid #5c2e91;
-            background: #faf5ff;
+            text-align: left;
+            font-family: inherit;
         }
         .gift-card.popular {
             border: 2px solid #5c2e91;
+        }
+        .gift-card.selected {
+            background: #f4ecff;
+            outline: 2px solid #5c2e91;
+            outline-offset: -2px;
+        }
+        .freq-option:focus-visible,
+        .gift-card:focus-visible {
+            outline: 3px solid #0089d0;
+            outline-offset: 2px;
         }
         .popular-badge {
             position: absolute;
@@ -199,6 +204,11 @@
             font-weight: 800;
             color: #0f172a;
             margin-bottom: 2px;
+        }
+        .gift-amount .per {
+            font-size: 10px;
+            font-weight: 600;
+            color: #64748b;
         }
         .gift-desc {
             font-size: 9px;
@@ -235,8 +245,108 @@
             color: #64748b;
             line-height: 1.3;
         }
+        .qr-placeholder {
+            width: 30px;
+            height: 30px;
+            background: #0f172a;
+        }
     </style>
     <script>
+        // Ask strings. The card marked popular is selected by default.
+        var GIFT_OPTIONS = {
+            onetime: [
+                { amount: 100,  desc: "Helps 2 kids build swimming skills." },
+                { amount: 250,  desc: "Keeps a family fed for a full year.", popular: true },
+                { amount: 500,  desc: "Sends 2 kids to camp for 2 weeks." },
+                { amount: 1000, desc: "Provides 1 month of child care." }
+            ],
+            monthly: [
+                { amount: 15,  desc: "Over a year, helps 3 kids build swimming skills." },
+                { amount: 25,  desc: "Over a year, keeps a family fed.", popular: true },
+                { amount: 50,  desc: "Over a year, sends 2 kids to camp for 2 weeks." },
+                { amount: 100, desc: "Over a year, provides 1 month of child care." }
+            ]
+        };
+
+        var currentFreq = 'onetime';
+        var selectedAmount = null;
+
+        function formatMoney(n) {
+            return '$' + n.toLocaleString('en-US');
+        }
+
+        function setFrequency(freq) {
+            currentFreq = freq;
+            document.querySelectorAll('.freq-option').forEach(function (btn) {
+                var isActive = btn.dataset.freq === freq;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive);
+                btn.textContent = (isActive ? '⊙ ' : '◯ ') + btn.dataset.label;
+            });
+            renderGiftGrid();
+        }
+
+        function renderGiftGrid() {
+            var grid = document.getElementById('gift-grid');
+            var options = GIFT_OPTIONS[currentFreq];
+            var per = currentFreq === 'monthly' ? '<span class="per">/mo</span>' : '';
+            grid.innerHTML = '';
+            selectedAmount = null;
+
+            options.forEach(function (opt) {
+                var card = document.createElement('button');
+                card.type = 'button';
+                card.className = 'gift-card' + (opt.popular ? ' popular' : '');
+                card.dataset.amount = opt.amount;
+                card.innerHTML =
+                    (opt.popular ? '<div class="popular-badge">Most Popular</div>' : '') +
+                    '<div class="gift-amount">' + formatMoney(opt.amount) + per + '</div>' +
+                    '<div class="gift-desc">' + opt.desc + '</div>';
+                card.addEventListener('click', function () { selectAmount(opt.amount); });
+                grid.appendChild(card);
+                if (opt.popular) selectedAmount = opt.amount;
+            });
+
+            document.getElementById('other-amount').value = '$ ';
+            highlightSelected();
+            updateButton();
+        }
+
+        function selectAmount(amount) {
+            selectedAmount = amount;
+            document.getElementById('other-amount').value = '$ ';
+            highlightSelected();
+            updateButton();
+        }
+
+        function highlightSelected() {
+            document.querySelectorAll('.gift-card').forEach(function (card) {
+                var isSel = Number(card.dataset.amount) === selectedAmount;
+                card.classList.toggle('selected', isSel);
+                card.setAttribute('aria-pressed', isSel);
+            });
+        }
+
+        function handleOtherAmount(input) {
+            var n = parseFloat(input.value.replace(/[^0-9.]/g, ''));
+            selectedAmount = isNaN(n) || n <= 0 ? null : n;
+            document.querySelectorAll('.gift-card').forEach(function (card) {
+                card.classList.remove('selected');
+                card.setAttribute('aria-pressed', false);
+            });
+            updateButton();
+        }
+
+        function updateButton() {
+            var btn = document.getElementById('complete-btn');
+            if (selectedAmount === null) {
+                btn.textContent = 'Complete Gift';
+                return;
+            }
+            var suffix = currentFreq === 'monthly' ? '/month' : '';
+            btn.textContent = 'Complete Gift (' + formatMoney(selectedAmount) + suffix + ')';
+        }
+
         function toggleTribute(checkbox) {
             var tributeContainer = document.getElementById('tribute-container');
             tributeContainer.style.display = checkbox.checked ? 'block' : 'none';
@@ -247,33 +357,9 @@
             matchContainer.style.display = checkbox.checked ? 'block' : 'none';
         }
 
-        function setFrequency(freq) {
-            // Update active states on tab buttons
-            document.getElementById('freq-onetime').className = 'freq-option' + (freq === 'onetime' ? ' active' : '');
-            document.getElementById('freq-monthly').className = 'freq-option' + (freq === 'monthly' ? ' active' : '');
-
-            // Update radio/icon representation inside tabs
-            document.getElementById('freq-onetime').innerHTML = freq === 'onetime' ? '⊙ One-Time Gift' : '◯ One-Time Gift';
-            document.getElementById('freq-monthly').innerHTML = freq === 'monthly' ? '⊙ Monthly Sustainer' : '◯ Monthly Sustainer';
-
-            // Dynamically update gift descriptions based on frequency selection
-            const desc1 = document.getElementById('desc-100');
-            const desc250 = document.getElementById('desc-250');
-            const desc500 = document.getElementById('desc-500');
-            const desc1000 = document.getElementById('desc-1000');
-
-            if (freq === 'monthly') {
-                desc1.innerText = 'Provides ongoing monthly water safety training for children.';
-                desc250.innerText = 'Keeps a family fed through continuous monthly food distributions.';
-                desc500.innerText = 'Sustains full-season camp opportunities for local youth.';
-                desc1000.innerText = 'Provides continuous monthly child care support for working parents.';
-            } else {
-                desc1.innerText = 'Helps 2 kids build swimming skills.';
-                desc250.innerText = 'Keeps a family fed for a full year.';
-                desc500.innerText = 'Sends 2 kids to camp for 2 weeks.';
-                desc1000.innerText = 'Provides 1 month of child care.';
-            }
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            setFrequency('onetime');
+        });
     </script>
 </head>
 <body>
@@ -308,34 +394,17 @@
                     </select>
                 </div>
                 
-                <div class="freq-selector">
-                    <div id="freq-onetime" class="freq-option active" onclick="setFrequency('onetime')">⊙ One-Time Gift</div>
-                    <div id="freq-monthly" class="freq-option" onclick="setFrequency('monthly')">◯ Monthly Sustainer</div>
+                <div class="freq-selector" role="group" aria-label="Gift frequency">
+                    <button type="button" class="freq-option active" data-freq="onetime" data-label="One-Time Gift" onclick="setFrequency('onetime')">⊙ One-Time Gift</button>
+                    <button type="button" class="freq-option" data-freq="monthly" data-label="Monthly Sustainer" onclick="setFrequency('monthly')">◯ Monthly Sustainer</button>
                 </div>
 
-                <div class="gift-grid">
-                    <div class="gift-card">
-                        <div class="gift-amount">$100</div>
-                        <div id="desc-100" class="gift-desc">Helps 2 kids build swimming skills.</div>
-                    </div>
-                    <div class="gift-card popular">
-                        <div class="popular-badge">Most Popular</div>
-                        <div class="gift-amount">$250</div>
-                        <div id="desc-250" class="gift-desc">Keeps a family fed for a full year.</div>
-                    </div>
-                    <div class="gift-card">
-                        <div class="gift-amount">$500</div>
-                        <div id="desc-500" class="gift-desc">Sends 2 kids to camp for 2 weeks.</div>
-                    </div>
-                    <div class="gift-card">
-                        <div class="gift-amount">$1,000</div>
-                        <div id="desc-1000" class="gift-desc">Provides 1 month of child care.</div>
-                    </div>
-                </div>
+                <!-- Gift cards are built from GIFT_OPTIONS in the script above -->
+                <div class="gift-grid" id="gift-grid"></div>
 
                 <div class="form-group">
-                    <label class="form-label">Other Amount</label>
-                    <input type="text" class="form-input" value="$ ">
+                    <label class="form-label" for="other-amount">Other Amount</label>
+                    <input type="text" class="form-input" id="other-amount" value="$ " oninput="handleOtherAmount(this)">
                 </div>
 
                 <hr class="section-divider">
@@ -405,8 +474,8 @@
                 <div class="form-group">
                     <label class="form-label">Payment Method</label>
                     <div style="font-size: 11px; margin-bottom: 6px;">
-                        <label><input type="radio" checked> Credit Card</label> &nbsp;&nbsp;&nbsp;
-                        <label><input type="radio"> Bank / ACH</label>
+                        <label><input type="radio" name="pay-method" checked> Credit Card</label> &nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="pay-method"> Bank / ACH</label>
                     </div>
                 </div>
 
@@ -430,7 +499,7 @@
                     <strong>United Way Donor Code #286</strong> designates the Y.
                 </div>
 
-                <div class="btn-primary" style="text-align: center;">Complete Gift ($250)</div>
+                <div class="btn-primary" id="complete-btn" style="text-align: center;">Complete Gift ($250)</div>
             </div>
 
             <div class="footer-branding">
