@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winter & Spring Program Guide - Sewickley Valley YMCA</title>
+<meta name="robots" content="noindex, follow">
+<meta property="og:title" content="Winter & Spring Program Guide - Sewickley Valley YMCA">
+<meta property="og:url" content="https://www.sewickleyymca.org/wpg/">
+<meta property="og:site_name" content="Sewickley Valley YMCA">
+<style>
+/* All styles scoped to .wpg so the block can be pasted into the WordPress page without affecting the theme */
+.wpg{--y-blue:#0060af;--y-blue-mid:#0089d0;--y-blue-light:#00aeef;--y-teal:#01a490;--y-ink:#1f2a33;--y-muted:#4a5560;--y-line:#d9e2ea;--y-bg:#f4f7fa;
+  font-family:Verdana,Geneva,sans-serif;color:var(--y-ink);line-height:1.55;max-width:1200px;margin:0 auto;padding:0 16px 48px}
+.wpg *{box-sizing:border-box}
+.wpg a{color:var(--y-blue)}
+.wpg a:focus-visible,.wpg .wpg-pill:focus-visible,.wpg .wpg-filter a:focus-visible{outline:3px solid var(--y-blue-light);outline-offset:2px}
+
+.wpg-hero{margin:0 -16px 32px}
+.wpg-hero img{display:block;width:100%;height:auto;border-radius:0 0 14px 14px}
+
+.wpg-intro{font-family:"Noto Serif",Georgia,serif;font-size:1.15rem;max-width:760px;margin:0 auto 24px;text-align:center}
+.wpg-filter{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 40px;padding:0;list-style:none}
+.wpg-filter a{display:inline-block;padding:8px 16px;border-radius:999px;background:var(--y-bg);border:1px solid var(--y-line);color:var(--y-blue);text-decoration:none;font-size:.9rem;font-weight:700}
+.wpg-filter a:hover{background:var(--y-blue);color:#fff;border-color:var(--y-blue)}
+
+.wpg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px}
+
+/* Card: photo and name only; details reveal on hover, tap or keyboard focus */
+.wpg-card{position:relative;height:420px;border:1px solid var(--y-line);border-radius:14px;overflow:hidden;overflow:clip;background:#fef7ec;scroll-margin-top:110px}
+.wpg-face{display:block;position:absolute;inset:0;width:100%;padding:0;border:0;margin:0;background:var(--y-bg);cursor:pointer;text-align:left;font:inherit;color:#fff}
+.wpg-face img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.wpg-face::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,32,64,.78) 0%,rgba(0,32,64,.35) 32%,rgba(0,32,64,0) 55%)}
+.wpg-name{position:absolute;z-index:1;left:22px;right:22px;bottom:46px;font-size:1.55rem;font-weight:700;line-height:1.15;text-shadow:0 1px 3px rgba(0,0,0,.35)}
+.wpg-hint{position:absolute;z-index:1;left:22px;bottom:20px;font-size:.85rem;font-weight:700;letter-spacing:.02em;opacity:.92}
+
+.wpg-panel{position:absolute;z-index:2;inset:0;display:flex;flex-direction:column;gap:12px;padding:22px 22px 24px;background:#fef7ec;overflow-y:auto;
+  opacity:0;transform:translateY(100%);pointer-events:none;
+  transition:transform .32s cubic-bezier(.2,.7,.2,1),opacity .2s ease}
+/* Open by tap or keyboard: no delay */
+.wpg-card.open .wpg-panel,
+.wpg-card:has(:focus-visible) .wpg-panel{opacity:1;transform:none;pointer-events:auto}
+.wpg-card.open .wpg-face img,
+.wpg-card:has(:focus-visible) .wpg-face img{transform:scale(1.05)}
+/* Open by mouse: photo zooms right away; panel waits 120ms so cards don't flash as the pointer crosses the grid */
+@media (hover:hover){
+  .wpg-card:hover .wpg-face img{transform:scale(1.05)}
+  .wpg-card:hover .wpg-panel{opacity:1;transform:none;pointer-events:auto;transition-delay:.12s}
+}
+@media (prefers-reduced-motion:reduce){
+  .wpg-panel{transform:none;transition:opacity .15s ease}
+  .wpg-face img,.wpg-card:hover .wpg-face img,.wpg-card.open .wpg-face img,.wpg-card:has(:focus-visible) .wpg-face img{transform:none;transition:none}
+}
+
+.wpg-card h3{margin:0;padding-right:36px;font-size:1.35rem;line-height:1.2}
+.wpg-card h3 a{text-decoration:none;color:var(--y-blue)}
+.wpg-card h3 a:hover{text-decoration:underline}
+.wpg-card p{margin:0;font-family:"Noto Serif",Georgia,serif;color:var(--y-muted)}
+.wpg-close{display:none;position:absolute;top:12px;right:12px;width:36px;height:36px;border:1px solid var(--y-line);border-radius:50%;background:#fff;color:var(--y-blue);font-size:1.4rem;line-height:1;cursor:pointer}
+@media (hover:none){.wpg-close{display:block}}
+.wpg-face:focus-visible,.wpg-close:focus-visible{outline:3px solid var(--y-blue-light);outline-offset:-3px}
+
+.wpg-pills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 16px;margin-top:0;padding-top:8px;border-top:1px solid #ecdcc2}
+.wpg-pill{position:relative;display:block;padding:6px 0 6px 14px;min-height:24px;color:var(--y-blue);font-size:.85rem;font-weight:700;line-height:1.3;text-decoration:underline;text-decoration-color:rgba(0,96,175,.3);text-underline-offset:3px}
+.wpg-pill::before{content:"\203A";position:absolute;left:0;top:5px;font-size:1rem;line-height:1.2;color:var(--y-teal)}
+.wpg-pill:hover{text-decoration-color:currentColor;color:#004a87}
+.wpg-age{display:block;font-weight:400;font-size:.8rem;margin-top:1px}
+@media (max-width:480px){.wpg-card{height:480px}.wpg-panel{padding:20px 18px 22px}.wpg-pills{gap:2px 12px}.wpg-pill{padding:8px 0 8px 14px}}
+
+.wpg-cta{margin:48px auto 0;max-width:760px;text-align:center;font-family:"Noto Serif",Georgia,serif}
+.wpg-cta strong{font-family:Verdana,Geneva,sans-serif}
+
+@media (max-width:420px){.wpg-grid{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+<main class="wpg">
+
+  <header class="wpg-hero">
+    <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/03/hero-banner.webp" alt="Winter &amp; Spring Program Guide ’27, sewickleyymca.org">
+  </header>
+
+  <p class="wpg-intro">Warm up to something new at the Y. From swim lessons to youth sports to healthy aging classes, there’s a fresh way to connect, get active and belong. Most winter programs begin Monday, Jan. 4.</p>
+
+  <nav aria-label="Jump to a program category">
+    <ul class="wpg-filter">
+      <li><a href="#wpg-swim-lessons">Swim Lessons</a></li>
+      <li><a href="#wpg-aquatics">Aquatics</a></li>
+      <li><a href="#wpg-preschool-toddler">Preschool & Toddler</a></li>
+      <li><a href="#wpg-youth-sports">Youth Sports</a></li>
+      <li><a href="#wpg-martial-arts">Martial Arts</a></li>
+      <li><a href="#wpg-family-fun">Family Fun</a></li>
+      <li><a href="#wpg-day-camps">Day Camps</a></li>
+      <li><a href="#wpg-teens">Teens</a></li>
+      <li><a href="#wpg-child-care">Child Care</a></li>
+      <li><a href="#wpg-montessori">Montessori</a></li>
+      <li><a href="#wpg-wellness">Wellness</a></li>
+      <li><a href="#wpg-healthy-aging">Healthy Aging</a></li>
+      <li><a href="#wpg-group-sports">Group Sports</a></li>
+      <li><a href="#wpg-staying-connected">Staying Connected</a></li>
+      <li><a href="#wpg-financial-assistance">Financial Assistance</a></li>
+      <li><a href="#wpg-volunteer">Volunteer</a></li>
+    </ul>
+  </nav>
+
+  <div class="wpg-grid">
+
+    <!-- SWIM LESSONS -->
+    <article class="wpg-card" id="wpg-swim-lessons">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-swim-lessons-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/swim-lessons-alt.webp" alt="A swim instructor helping a young child in the pool at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Swim Lessons</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-swim-lessons-panel">
+        <h3><a href="https://www.sewickleyymca.org/aquatics/group-swim-lessons/">Swim Lessons</a></h3>
+        <p>Confidence, safety and lifelong skills for every swimmer, led by certified instructors. Session 1 runs Jan. 19–Feb. 27, with member registration opening Dec. 7.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/group-swim-lessons/6mos-36mos/">Parent & Child <span class="wpg-age">Ages 6–36 Months</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/group-swim-lessons/presch-3-5yrs/">Preschool <span class="wpg-age">Ages 3–5</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/group-swim-lessons/youth-6-12yrs/">Youth <span class="wpg-age">Ages 6–12</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/group-swim-lessons/teen-adult/">Adult <span class="wpg-age">Ages 13+</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/adaptive-lessons/">Adaptive <span class="wpg-age">Ages 6+</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/private-lessons/">Private & Semiprivate <span class="wpg-age">Ages 6+</span></a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Swim Lessons">&times;</button>
+      </div>
+    </article>
+
+    <!-- AQUATICS -->
+    <article class="wpg-card" id="wpg-aquatics">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-aquatics-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/lifelong-swim-alt.webp" alt="A swimmer doing freestyle laps in the pool at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Aquatics</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-aquatics-panel">
+        <h3><a href="https://www.sewickleyymca.org/aquatics/">Aquatics</a></h3>
+        <p>Make a splash beyond lessons. Train with a swim team, log laps on your own schedule or enjoy family time in the warm-water pool.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/swim-teams/">Youth Swim Team <span class="wpg-age">Ages 6–18</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/swim-teams/">Y Masters Swim <span class="wpg-age">Ages 19+</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/sewickley-ymca-pool-reservations-for-members/pools-warm-fam/">Family Swim</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/sewickley-ymca-pool-reservations-for-members/pools-large-open/">Adult, Lap & Open Swim</a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Aquatics">&times;</button>
+      </div>
+    </article>
+
+    <!-- PRESCHOOL & TODDLER -->
+    <article class="wpg-card" id="wpg-preschool-toddler">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-preschool-toddler-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/preschool-toddler-alt.webp" alt="Two toddlers sitting on a colorful parachute at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Preschool & Toddler Recreation</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-preschool-toddler-panel">
+        <h3><a href="https://www.sewickleyymca.org/slr/under5/">Preschool & Toddler Recreation</a></h3>
+        <p>Discovery, laughter and growth for your family. Climb, tumble and play together, and experience the joy of learning side by side. Registration opens Dec. 7.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/under5rec/">Kids Gym & Just for Me <span class="wpg-age">Ages 1–3</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/under5rec/">Family Gym <span class="wpg-age">Ages 1–7</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/under5sports/">Preschool Sports <span class="wpg-age">Ages 3–5</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/gymnastics/">Preschool Gymnastics <span class="wpg-age">Ages 3–5</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/kid-zone/">Kid Zone & Chill Zone</a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Preschool & Toddler Recreation">&times;</button>
+      </div>
+    </article>
+
+    <!-- YOUTH SPORTS -->
+    <article class="wpg-card" id="wpg-youth-sports">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-youth-sports-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/youth-sports-alt.webp" alt="Kids playing in a youth basketball game at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Youth Sports</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-youth-sports-panel">
+        <h3><a href="https://www.sewickleyymca.org/slr/youth-teen-sports/">Youth Sports</a></h3>
+        <p>Game on. Everyone in! Young athletes build skills, confidence and teamwork in a fun, supportive setting. Registration opens Dec. 7.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/basketball/">Youth Basketball League <span class="wpg-age">Ages 5–13</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/flag-football/">Flag Football <span class="wpg-age">Ages 6–12</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/gymnastics/">Gymnastics <span class="wpg-age">Ages 6–12</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/run-club/">Run Club <span class="wpg-age">Ages 6–12</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/racket-sports/">Youth Pickup Pickleball <span class="wpg-age">Ages 6–15</span></a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Youth Sports">&times;</button>
+      </div>
+    </article>
+
+    <!-- MARTIAL ARTS -->
+    <article class="wpg-card" id="wpg-martial-arts">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-martial-arts-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/martial-arts-alt.webp" alt="Tang Soo Do students and instructor in uniform at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Martial Arts</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-martial-arts-panel">
+        <h3><a href="https://www.sewickleyymca.org/slr/martial-arts/">Martial Arts</a></h3>
+        <p>Learn kicks, blocks, forms and self-defense on the mat. Choose from two traditional Korean martial arts, Tang Soo Do and Tae Kwon Do, taught by experienced instructors in a supportive setting. Students must be 6 by the first class.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/martial-arts/">Tang Soo Do <span class="wpg-age">Ages 6–12</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/martial-arts/">Tae Kwon Do <span class="wpg-age">Ages 6+</span></a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Martial Arts">&times;</button>
+      </div>
+    </article>
+
+    <!-- FAMILY FUN -->
+    <article class="wpg-card" id="wpg-family-fun">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-family-fun-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/family-fun-alt.webp" alt="A smiling little girl climbing on colorful play equipment at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Family Fun</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-family-fun-panel">
+        <h3><a href="https://www.sewickleyymca.org/events/">Family Fun</a></h3>
+        <p>Make memories together all season long, from a glowing family dance party in March to s’mores around the campfire in June.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/events/">Operation Warm <span class="wpg-age">January</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/events/">Glow Crazy Family Dance Party <span class="wpg-age">March</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/events/">Healthy Kids Day <span class="wpg-age">April</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/events/">Water Safety <span class="wpg-age">May</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/events/">Family Campfire <span class="wpg-age">June</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/pno/">Parents Night Out <span class="wpg-age">Ages 8–12</span></a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Family Fun">&times;</button>
+      </div>
+    </article>
+
+    <!-- DAY CAMPS -->
+    <article class="wpg-card" id="wpg-day-camps">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-day-camps-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/dayy-camps-alt.webp" alt="Three smiling campers sitting together outdoors at Sewickley Valley YMCA day camp" loading="lazy">
+        <span class="wpg-name">Day Camps</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-day-camps-panel">
+        <h3><a href="https://www.sewickleyymca.org/camps">Day Camps</a></h3>
+        <p>Summer at the Y is packed with adventure, creativity and friendship. Campers swim, explore outdoors and discover what they love. Camp registration opens March 15.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/camps">Preschool Camp <span class="wpg-age">Ages 3–5</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/camps">Youth Camp <span class="wpg-age">Ages 5–12</span></a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Day Camps">&times;</button>
+      </div>
+    </article>
+
+    <!-- TEENS -->
+    <article class="wpg-card" id="wpg-teens">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-teens-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/teens-alt.webp" alt="A smiling teen giving a thumbs-up at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Teens</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-teens-panel">
+        <h3><a href="https://www.sewickleyymca.org/edu-leader">Teens</a></h3>
+        <p>Hang out with friends, finish homework, build leadership skills and get stronger in a welcoming space made for teens.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/oasis/">OASIS Teen Center <span class="wpg-age">Grades 5–9</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/youth-gov">Youth & Government <span class="wpg-age">Ages 12–18</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/edu-leader">Leadership Council <span class="wpg-age">Ages 14–17</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/fitness/strength-training-for-teens/">Teen Power Up <span class="wpg-age">Ages 14–16</span></a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Teens">&times;</button>
+      </div>
+    </article>
+
+    <!-- CHILD CARE -->
+    <article class="wpg-card" id="wpg-child-care">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-child-care-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/child-care-alt.webp" alt="A smiling young boy with his caregiver at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Child Care</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-child-care-panel">
+        <h3><a href="https://www.sewickleyymca.org/early-learning/">Child Care</a></h3>
+        <p>At the Sewickley Valley YMCA, every child is welcomed into a safe, nurturing and inclusive environment where they can grow with confidence.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/early-learning/">Infant, Toddler & Preschool</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/child-care/ymca-prek-programs">Part-Day Pre-K</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/before-after-school/">Before School Child Care</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/before-after-school/">After School Child Care</a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Child Care">&times;</button>
+      </div>
+    </article>
+
+    <!-- MONTESSORI -->
+    <article class="wpg-card" id="wpg-montessori">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-montessori-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/montessori-alt.webp" alt="A young student working at a table in a Montessori classroom at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Montessori</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-montessori-panel">
+        <h3><a href="https://www.sewickleyymca.org/sewickley-montessori-school">Montessori</a></h3>
+        <p>Sewickley Montessori guides children to follow their natural curiosity and grow at their own pace in a supportive environment that meets their developmental needs.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/sewickley-montessori-school">Montessori Toddler <span class="wpg-age">Ages 18–36 Months</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/sewickley-montessori-school">Children’s House <span class="wpg-age">Preschool 3 Years–Pre-K</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/sewickley-montessori-school">Accredited Montessori Kindergarten</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/sewickley-montessori-school">Lower Elementary <span class="wpg-age">Grades 1–3</span></a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Montessori">&times;</button>
+      </div>
+    </article>
+
+    <!-- WELLNESS -->
+    <article class="wpg-card" id="wpg-wellness">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-wellness-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/wellness-alt.webp" alt="Adults stretching with resistance bands in a group exercise class at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Wellness</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-wellness-panel">
+        <h3><a href="https://www.sewickleyymca.org/amenities/wellness-center/">Wellness</a></h3>
+        <p>Build strength, flexibility and endurance in a supportive, welcoming setting. Most group exercise and water aerobics classes are free to Sewickley Y members.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/fitness/group-land-exercise/">Group Exercise</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/fitness/personal-training/">Personal Training</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/fitness/trx/">TRX</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/exercise/aerobic/">Group Water Aerobics</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/fitness/strength-training-for-teens/">Teen Power Up <span class="wpg-age">Ages 14–16</span></a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Wellness">&times;</button>
+      </div>
+    </article>
+
+    <!-- HEALTHY AGING -->
+    <article class="wpg-card" id="wpg-healthy-aging">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-healthy-aging-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/healthy-aging-alt.webp" alt="Older adults stretching in the Thrive Center for Healthy Aging at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Healthy Aging</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-healthy-aging-panel">
+        <h3><a href="https://www.sewickleyymca.org/senior-central/healthy-aging/">Healthy Aging</a></h3>
+        <p>Stay strong, flexible and connected. The Thrive Center for Healthy Aging offers evidence-based programs that help older adults maintain mobility and build community.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/senior-central/healthy-aging/">Healthy Aging Classes</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/fitness/womens-only-wellness/">Women’s Wellness</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/fitness/chronic-disease/">Chronic Disease Wellness</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/aquatics/exercise/">Water Exercise</a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Healthy Aging">&times;</button>
+      </div>
+    </article>
+
+    <!-- GROUP SPORTS -->
+    <article class="wpg-card" id="wpg-group-sports">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-group-sports-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/group-sports-alt.webp" alt="Four women holding platform tennis paddles on an outdoor court at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Group Sports</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-group-sports-panel">
+        <h3><a href="https://www.sewickleyymca.org/slr/ages18up/">Group Sports</a></h3>
+        <p>From pickleball to platform tennis, basketball to volleyball, grab a friend or meet new ones and get in the game. No league or partner needed.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/amenities/gyms-courts/indoor/#game-on">Pickup Basketball <span class="wpg-age">Ages 18+</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/pickleball">Pickup Pickleball <span class="wpg-age">Ages 16+</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/racket-sports/">Youth Pickup Pickleball <span class="wpg-age">Ages 6–15</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/amenities/gyms-courts/indoor/#game-on">Pickup Volleyball <span class="wpg-age">Ages 16+</span></a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/racket-sports/">Tennis</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/slr/platform-tennis/">Platform Tennis</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/amenities/gyms-courts/indoor/#racquet-courts">Racquetball</a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Group Sports">&times;</button>
+      </div>
+    </article>
+
+    <!-- STAYING CONNECTED -->
+    <article class="wpg-card" id="wpg-staying-connected">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-staying-connected-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/staying-connected-alt.webp" alt="Older adults playing mahjong together at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Staying Connected</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-staying-connected-panel">
+        <h3><a href="https://www.sewickleyymca.org/senior-central/fun-fellowship/">Staying Connected</a></h3>
+        <p>Reconnect with old friends and meet new ones through socials, game classes and weekly gatherings designed for older adults.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/senior-central/fun-fellowship/senior-socials/">Senior Socials</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/rec-leisure">Mahjong</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/card-and-table-games">Bridge</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/senior-central/fun-fellowship/smc/">Senior Men’s Club (SMC)</a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Staying Connected">&times;</button>
+      </div>
+    </article>
+
+
+
+    <!-- FINANCIAL ASSISTANCE -->
+    <article class="wpg-card" id="wpg-financial-assistance">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-financial-assistance-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/financial-aid-alt.webp" alt="A smiling family of five sitting together" loading="lazy">
+        <span class="wpg-name">Financial Assistance</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-financial-assistance-panel">
+        <h3><a href="https://www.sewickleyymca.org/membership/faq/#aid">Financial Assistance</a></h3>
+        <p>Everyone deserves the chance to learn, grow and belong. Scholarships for memberships, swim lessons, youth programs, day camp and child care are available to qualifying individuals and families, made possible by donors to our Annual Giving Campaign.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/membership/faq/#aid">How to Apply</a>
+          <a class="wpg-pill" href="https://www.sewickleyymca.org/wp-content/uploads/2024/04/FA-Application7.23.pdf">Download the Application</a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Financial Assistance">&times;</button>
+      </div>
+    </article>
+
+    <!-- VOLUNTEER -->
+    <article class="wpg-card" id="wpg-volunteer">
+      <button class="wpg-face" type="button" aria-expanded="false" aria-controls="wpg-volunteer-panel">
+        <img src="https://www.sewickleyymca.org/wp-content/uploads/2026/11/volunteer-alt.webp" alt="Three students holding new backpacks at Sewickley Valley YMCA" loading="lazy">
+        <span class="wpg-name">Volunteer</span>
+        <span class="wpg-hint" aria-hidden="true">Explore &rsaquo;</span>
+      </button>
+      <div class="wpg-panel" id="wpg-volunteer-panel">
+        <h3><a href="https://www.sewickleyymca.org/volunteer/">Volunteer</a></h3>
+        <p>Since 1894, the Sewickley Valley YMCA has brought people together around positive values, healthy living and real relationships. This winter and spring, become part of that story.</p>
+        <div class="wpg-pills">
+          <a class="wpg-pill" href="https://give.sewickleyymca.org/volunteer/">Learn more</a>
+        </div>
+        <button class="wpg-close" type="button" aria-label="Close Volunteer">&times;</button>
+      </div>
+    </article>
+
+
+
+  </div>
+
+  <p class="wpg-cta"><strong>Questions?</strong> Browse programs and register online at <a href="https://www.sewickleyymca.org">sewickleyymca.org</a>, stop by the Y or call <a href="tel:4127419622">412-741-9622</a>. Whether you’re trying something new or enjoying a favorite, we’re here to help!</p>
+
+<script>
+/* Tap or click a card to open its details (touch screens have no hover); the close button hides them */
+document.querySelectorAll('.wpg-card').forEach(function(card){
+  var face=card.querySelector('.wpg-face'), close=card.querySelector('.wpg-close');
+  function set(open){card.classList.toggle('open',open);face.setAttribute('aria-expanded',open?'true':'false');}
+  face.addEventListener('click',function(){set(!card.classList.contains('open'));});
+  close.addEventListener('click',function(){set(false);face.focus({preventScroll:true});});
+});
+</script>
+</main>
+</body>
+</html>
